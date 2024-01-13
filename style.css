@@ -8,6 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   height: 100dvh;
+  background: url(./sky.jpg);
+  background-image: grayscale(1);
 }
 h1 {
   text-align: center;
@@ -38,7 +40,7 @@ input[type='search']:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
-  align-self: center;
+  justify-content: center;
 }
 
 .toggle {
@@ -66,16 +68,15 @@ input[type='search']:focus {
 .toggle.active {
   background-color: red;
 }
-
 .location,
 .current,
 .weather,
 .atmosphere {
   display: flex;
   flex-direction: column;
-  border: 1px solid wheat;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 5px 5px 15px white;
   width: 300px;
   height: 300px;
   justify-content: center;
@@ -84,11 +85,24 @@ input[type='search']:focus {
   padding: 10px;
   font-weight: bolder;
 }
+.location:hover,
+.current:hover,
+.weather:hover,
+.atmosphere:hover {
+  box-shadow: 10px 10px 20px white;
+}
+
 h2 {
   margin-bottom: 10px;
   font-size: 30px;
 }
-
+.name {
+  font-size: 3rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin: 30px 20px;
+}
 .weather div,
 .atmosphere div {
   display: flex;
