@@ -26,12 +26,16 @@ form button {
   border-radius: 0px 15px 15px 0px;
   padding: 5px 7px;
   background-color: green;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+form button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 input[type='search'] {
   border-radius: 15px 0px 0px 15px;
-  border: 1px solid black;
   padding: 0px 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
 }
 input[type='search']:focus {
   outline: none;
@@ -47,10 +51,13 @@ input[type='search']:focus {
   width: 50px;
   height: 30px;
   border-radius: 50px;
-  background-color: blue;
+  background-color: rgba(255, 0, 0, 0.5);
   position: relative;
   align-self: flex-end;
   margin: 0px 20px 10px 0px;
+}
+.toggle.active {
+  background-color: rgba(0, 33, 245, 0.5);
 }
 .circle {
   width: 20px;
@@ -64,9 +71,6 @@ input[type='search']:focus {
 }
 .active .circle {
   left: 25px;
-}
-.toggle.active {
-  background-color: red;
 }
 .location,
 .current,
