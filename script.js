@@ -12,10 +12,6 @@ function metricData(imperial = false) {
     return {
       error: rawData.error.message,
     };
-  } else if (Object.keys(rawData).length == 0) {
-    return {
-      error: 'Please select a location.',
-    };
   }
   const commonData = {
     name: rawData.location.name,
@@ -56,7 +52,7 @@ async function handleSubmit(e) {
   const q = document.querySelector('input').value;
   rawData = await getData(q);
   const processedData = metricData();
-  console.log(processedData);
+  writeDOM(processedData);
   e.target.reset();
   e.preventDefault();
 }
@@ -64,12 +60,19 @@ async function handleSubmit(e) {
 async function handleChange(e) {
   if (e.target.checked) {
     const processedData = metricData();
-    console.log(processedData);
+    writeDOM(processedData);
   } else {
     const processedData = metricData((imperial = true));
-    console.log(processedData);
+    writeDOM(processedData);
   }
 }
 
+async function init() {
+  rawData = await getData('rajahmundry');
+  const processedData = metricData();
+  writeDOM(processedData);
+}
+
+init();
 document.querySelector('form').onsubmit = handleSubmit;
 document.querySelector('#switch').onchange = handleChange;
