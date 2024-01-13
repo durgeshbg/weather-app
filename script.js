@@ -58,4 +58,17 @@ function imperialData(data) {
   };
 }
 
-
+async function handleSubmit(e) {
+  const q = document.querySelector('input').value;
+  console.log(q);
+  const rawData = await getData(q);
+  if (rawData.error) {
+    console.log(rawData.error.message);
+  } else {
+    const processedData = imperialData(rawData);
+    console.log(rawData);
+  }
+  e.target.reset();
+  e.preventDefault();
+}
+document.querySelector('form').onsubmit = handleSubmit;
