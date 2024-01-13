@@ -57,9 +57,10 @@ async function handleSubmit(e) {
   e.preventDefault();
 }
 
-async function handleChange(e) {
-  e.target.classList.toggle('active');
-  if (Array.from(e.target.classList).includes('active')) {
+async function handleChange() {
+  const toggle = document.querySelector('.toggle');
+  toggle.classList.toggle('active');
+  if (Array.from(toggle.classList).includes('active')) {
     const processedData = metricData();
     writeDOM(processedData);
   } else {
