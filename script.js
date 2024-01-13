@@ -61,4 +61,15 @@ async function handleSubmit(e) {
   e.preventDefault();
 }
 
+async function handleChange(e) {
+  if (e.target.checked) {
+    const processedData = metricData();
+    console.log(processedData);
+  } else {
+    const processedData = metricData((imperial = true));
+    console.log(processedData);
+  }
+}
+
 document.querySelector('form').onsubmit = handleSubmit;
+document.querySelector('#switch').onchange = handleChange;
