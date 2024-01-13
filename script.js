@@ -20,12 +20,12 @@ function metricData(imperial = false) {
     localtime: rawData.location.localtime,
     is_day: rawData.current.is_day ? 'Day' : 'Night',
     condition_text: rawData.current.condition.text,
-    condition_icon: rawData.current.condition.icon.slice(2),
+    condition_icon: rawData.current.condition.icon,
     wind_dir: rawData.current.wind_dir,
     wind_deg: rawData.current.wind_degree + '°',
     humidity: rawData.current.humidity + '%',
-    could_cover: rawData.current.cloud + '%',
-    uv: rawData.current.uv,
+    cloud_cover: rawData.current.cloud + '%',
+    uv_index: rawData.current.uv,
   };
   const m = {
     ...commonData,
@@ -64,6 +64,42 @@ async function handleChange(e) {
   } else {
     const processedData = metricData((imperial = true));
     writeDOM(processedData);
+  }
+}
+
+function writeDOM(processedData) {
+  const container = document.querySelector('.container');
+  const error = document.querySelector('.error');
+  if (processedData.error) {
+    container.style.display = 'none';
+    error.style.display = '';
+    error.textContent = 'Please select a valid location!';
+    console.log(processedData);
+  } else {
+    container.style.display = '';
+    error.style.display = 'none';
+    // Location
+    document.querySelector('.name').textContent = processedData.name;
+    document.querySelector('.region').textContent = processedData.region;
+    document.querySelector('.country').textContent = processedData.country;
+    document.querySelector('.date').textContent = processedData.localtime.split(' ')[0];
+    document.querySelector('.time').textContent = processedData.localtime.split(' ')[1];
+    // Temperature
+    document.querySelector('.temp').textContent = processedData.temp;
+    document.querySelector('.text').textContent = processedData.condition_text;
+    document.querySelector('.icon').src = 'https:' + processedData.condition_icon;
+    // Wind
+    document.querySelector('.wind-dir .value').textContent = processedData.wind_dir;
+    document.querySelector('.wind-deg .value').textContent = processedData.wind_deg;
+    document.querySelector('.wind-speed .value').textContent = processedData.wind_speed;
+    document.querySelector('.humidity .value').textContent = processedData.humidity;
+    document.querySelector('.cloud-cover .value').textContent = processedData.cloud_cover;
+    // Atmosphere
+    document.querySelector('.pressure .value').textContent = processedData.pressure;
+    document.querySelector('.precip .value').textContent = processedData.precip;
+    document.querySelector('.feels-like .value').textContent = processedData.feels_like;
+    document.querySelector('.visibility .value').textContent = processedData.visibility;
+    document.querySelector('.uv-index .value').textContent = processedData.uv_index;
   }
 }
 
