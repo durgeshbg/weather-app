@@ -58,7 +58,8 @@ async function handleSubmit(e) {
 }
 
 async function handleChange(e) {
-  if (e.target.checked) {
+  e.target.classList.toggle('active');
+  if (Array.from(e.target.classList).includes('active')) {
     const processedData = metricData();
     writeDOM(processedData);
   } else {
@@ -111,4 +112,4 @@ async function init() {
 
 init();
 document.querySelector('form').onsubmit = handleSubmit;
-document.querySelector('#switch').onchange = handleChange;
+document.querySelector('.toggle').onclick = handleChange;
